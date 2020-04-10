@@ -73,6 +73,12 @@ class Html
         return $this;
     }
 
+    public function title($title)
+    {
+        $this->attributes[] = ['title' => $title];
+        return $this;
+    }
+
     public function margin($margin)
     {
         $this->attributes[] = ['class' => 'm-' . $margin];
@@ -154,6 +160,120 @@ class Html
     public function paddingHorizontal($padding)
     {
         $this->attributes[] = ['class' => 'px-' . $padding];
+        return $this;
+    }
+
+    public function confirm($message)
+    {
+        $this->attributes[] = ['onclick' => 'return confirm(\'' . $message . '\');'];
+        return $this;
+    }
+
+    public function buttonPrimary()
+    {
+        $this->attributes[] = ['class' => 'btn btn-primary'];
+        return $this;
+    }
+
+    public function buttonSecondary()
+    {
+        $this->attributes[] = ['class' => 'btn btn-secondary'];
+        return $this;
+    }
+
+    public function buttonSuccess()
+    {
+        $this->attributes[] = ['class' => 'btn btn-success'];
+        return $this;
+    }
+
+    public function buttonDanger()
+    {
+        $this->attributes[] = ['class' => 'btn btn-danger'];
+        return $this;
+    }
+
+    public function buttonWarning()
+    {
+        $this->attributes[] = ['class' => 'btn btn-warning'];
+        return $this;
+    }
+
+    public function buttonInfo()
+    {
+        $this->attributes[] = ['class' => 'btn btn-info'];
+        return $this;
+    }
+
+    public function buttonLight()
+    {
+        $this->attributes[] = ['class' => 'btn btn-light'];
+        return $this;
+    }
+
+    public function buttonDark()
+    {
+        $this->attributes[] = ['class' => 'btn btn-dark'];
+        return $this;
+    }
+
+    public function buttonLink()
+    {
+        $this->attributes[] = ['class' => 'btn btn-link'];
+        return $this;
+    }
+
+    public function textPrimary()
+    {
+        $this->attributes[] = ['class' => 'text-primary'];
+        return $this;
+    }
+
+    public function textSecondary()
+    {
+        $this->attributes[] = ['class' => 'text-secondary'];
+        return $this;
+    }
+
+    public function textSuccess()
+    {
+        $this->attributes[] = ['class' => 'text-success'];
+        return $this;
+    }
+
+    public function textDanger()
+    {
+        $this->attributes[] = ['class' => 'text-danger'];
+        return $this;
+    }
+
+    public function textWarning()
+    {
+        $this->attributes[] = ['class' => 'text-warning'];
+        return $this;
+    }
+
+    public function textInfo()
+    {
+        $this->attributes[] = ['class' => 'text-info'];
+        return $this;
+    }
+
+    public function textLight()
+    {
+        $this->attributes[] = ['class' => 'text-light'];
+        return $this;
+    }
+
+    public function textDark()
+    {
+        $this->attributes[] = ['class' => 'text-dark'];
+        return $this;
+    }
+
+    public function textMuted()
+    {
+        $this->attributes[] = ['class' => 'text-muted'];
         return $this;
     }
 }

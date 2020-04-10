@@ -21,10 +21,14 @@ return view(
     component('navbar') .
     container(
         heading('Edit Car') .
-        form(
-            formGroup(label('Name') . input('name', $car->name) . error('name')) .
-            formGroup(label('Year') . input('year', $car->year)->type('number') . error('name')) .
-            submit('Edit Car')
+        card(
+            cardBody(
+                form(
+                    formGroup(label('Name') . input('name', $car->name) . error('name')) .
+                    formGroup(label('Year') . input('year', $car->year)->type('number') . error('name')) .
+                    submit('Edit Car')->buttonPrimary()
+                )
+            )
         )
     )->marginVertical(4)
 );

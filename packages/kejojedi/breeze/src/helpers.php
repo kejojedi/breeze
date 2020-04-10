@@ -137,7 +137,7 @@ function paragraph($content)
 
 function icon($icon)
 {
-    return new Html('i', 'i', null, ['class' => 'fa fa-' . $icon]);
+    return new Html('i', 'i', null, ['class' => 'fas fa-' . $icon]);
 }
 
 function form($content)
@@ -173,15 +173,22 @@ function error($name)
 
 function submit($content)
 {
-    return new Html('button', null, $content, [
-        'type' => 'submit',
-        'class' => 'btn btn-primary',
-    ]);
+    return new Html('button', null, $content, ['type' => 'submit']);
+}
+
+function button($content)
+{
+    return new Html('button', null, $content, ['type' => 'button']);
 }
 
 function horizontalRule()
 {
     return new Html('hr');
+}
+
+function linebreak()
+{
+    return new Html('br');
 }
 
 function loop($items, $content)
@@ -228,11 +235,44 @@ function row($content)
     return new Html('div', 'div', $content, ['class' => 'row']);
 }
 
-function column($content, $width = null)
+function column($content)
 {
-    return new Html('div', 'div', $content, [
-        'class' => 'col' . ($width ? '-' . $width : null)
-    ]);
+    return new Html('div', 'div', $content, ['class' => 'col']);
+}
+
+function columnAuto($content, $width = null)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-auto']);
+}
+
+function card($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'card']);
+}
+
+function cardHeader($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'card-header']);
+}
+
+function cardBody($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'card-body']);
+}
+
+function cardFooter($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'card-footer']);
+}
+
+function listGroup($content)
+{
+    return new Html('ul', 'ul', $content, ['class' => 'list-group']);
+}
+
+function listGroupItem($content)
+{
+    return new Html('li', 'li', $content, ['class' => 'list-group-item']);
 }
 
 function paginate($elements)

@@ -1,9 +1,9 @@
 
-nicer index view (cards/tables)
-figure out responsive columns
-go through all bootstrap docs for more functions
 auth logic
 migrations/seeds?
+success messages + alerts?
+go through all bootstrap docs for more functions
+figure out responsive columns
 
 --
 

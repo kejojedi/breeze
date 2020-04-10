@@ -10,14 +10,22 @@ return view(
     container(
         row(
             column(heading('Cars')) .
-            column(hyperlink('/cars/create', 'Create Car'), 'auto')
+            columnAuto(hyperlink('/cars/create', 'Create Car')->buttonPrimary())
         ) .
-        loop(
-            $cars,
-            div('{car.name}') .
-            hyperlink('/cars/edit/{car.id}', 'Edit') .
-            horizontalRule()
-        ) .
+        listGroup(
+            loop(
+                $cars,
+                listGroupItem(
+                    row(
+                        column('{car.name}') .
+                        columnAuto(
+                            hyperlink('/cars/edit/{car.id}', icon('edit'))->marginRight(3) .
+                            hyperlink('/cars/delete/{car.id}', icon('trash-alt'))->confirm('Delete this car?')
+                        )
+                    )
+                )->paddingVertical(3)
+            )
+        )->marginBottom(3) .
         paginate($cars)
     )->marginVertical(4)
 );

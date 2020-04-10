@@ -20,10 +20,14 @@ return view(
     component('navbar') .
     container(
         heading('Create Car') .
-        form(
-            formGroup(label('Name') . input('name') . error('name')) .
-            formGroup(label('Year') . input('year')->type('number') . error('year')) .
-            submit('Create Car')
+        card(
+            cardBody(
+                form(
+                    formGroup(label('Name') . input('name') . error('name')) .
+                    formGroup(label('Year') . input('year')->type('number') . error('year')) .
+                    submit('Create Car')
+                )
+            )
         )
     )->marginVertical(4)
 );
