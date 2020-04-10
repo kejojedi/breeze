@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "packages/kejojedi/breeze"
+    }
+  ],
+  "require": {
+    "kejojedi/breeze": "@dev"
+  }
+}

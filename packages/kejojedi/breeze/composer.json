@@ -1,0 +1,30 @@
+{
+  "name": "kejojedi/breeze",
+  "description": "A declarative PHP app framework.",
+  "homepage": "https://github.com/kejojedi/breeze",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kevin Dion",
+      "email": "kejojedi@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "illuminate/container": "^7.5",
+    "illuminate/database": "^7.5",
+    "illuminate/routing": "^7.5",
+    "illuminate/events": "^7.5",
+    "illuminate/filesystem": "^7.5",
+    "illuminate/validation": "^7.5",
+    "illuminate/view": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kejojedi\\Breeze\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  }
+}
