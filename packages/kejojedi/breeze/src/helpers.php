@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Builder;
 use Kejojedi\Breeze\Html;
 use Kejojedi\Breeze\Model;
 
@@ -14,17 +15,18 @@ function title($title)
     $breeze->title = $title;
 }
 
-function param($key)
+function parameter($key)
 {
     global $breeze;
-    return $breeze->params[$key];
+    return $breeze->parameters[$key];
 }
 
 function database($table)
 {
-    /** @var \Illuminate\Database\Eloquent\Builder $model */
     $model = new Model;
     $model->setTable($table);
+
+    /** @var Builder $model */
     return $model;
 }
 
@@ -35,9 +37,16 @@ function validate($rules)
     return false;
 }
 
-function data($key)
+function formData($keys)
 {
-    return htmlspecialchars_decode($_POST[$key]);
+    $keys = func_get_args();
+    $formData = [];
+
+    foreach ($keys as $key) {
+        $formData[$key] = trim(htmlspecialchars_decode($_POST[$key]));
+    }
+
+    return $formData;
 }
 
 function redirect($redirect)
@@ -63,6 +72,20 @@ function navbarPrimary($content)
 {
     return new Html('nav', 'nav', $content, [
         'class' => 'navbar navbar-expand-md navbar-dark bg-primary',
+    ]);
+}
+
+function navbarLight($content)
+{
+    return new Html('nav', 'nav', $content, [
+        'class' => 'navbar navbar-expand-md navbar-light bg-light',
+    ]);
+}
+
+function navbarDark($content)
+{
+    return new Html('nav', 'nav', $content, [
+        'class' => 'navbar navbar-expand-md navbar-dark bg-dark',
     ]);
 }
 
@@ -240,7 +263,7 @@ function column($content)
     return new Html('div', 'div', $content, ['class' => 'col']);
 }
 
-function columnAuto($content, $width = null)
+function columnAuto($content)
 {
     return new Html('div', 'div', $content, ['class' => 'col-auto']);
 }

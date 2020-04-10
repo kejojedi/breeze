@@ -79,6 +79,12 @@ class Html
         return $this;
     }
 
+    public function placeholder($placeholder)
+    {
+        $this->attributes[] = ['placeholder' => $placeholder];
+        return $this;
+    }
+
     public function margin($margin)
     {
         $this->attributes[] = ['class' => 'm-' . $margin];

@@ -3,17 +3,14 @@
 route('/cars/edit/{id}');
 title('Edit Car');
 
-$car = database('cars')->findOrFail(param('id'));
+$car = database('cars')->findOrFail(parameter('id'));
 $rules = [
     'name' => 'required|unique:cars,name,' . $car->id,
     'year' => 'required|integer',
 ];
 
 if (validate($rules)) {
-    $car->update([
-        'name' => data('name'),
-        'year' => data('year'),
-    ]);
+    $car->update(formData('name', 'year'));
     redirect('/cars');
 }
 

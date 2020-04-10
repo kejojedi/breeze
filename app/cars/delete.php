@@ -2,7 +2,7 @@
 
 route('/cars/delete/{id}');
 
-$car = database('cars')->findOrFail(param('id'));
+$car = database('cars')->findOrFail(parameter('id'));
 $car->delete();
 
 redirect('/cars');

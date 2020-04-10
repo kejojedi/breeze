@@ -1,12 +1,26 @@
 
 auth logic
-migrations/seeds?
-success messages + alerts?
-go through all bootstrap docs for more functions
-figure out responsive columns
+    register
+    login
+    logout
+    forgot pw
 
---
+database
+    migrations
+    seeds
 
-docs
-video tutorial
-unit tests
+alerts?
+    success
+    error
+
+bootstrap/ui
+    go through bs4 docs
+    figure out responsive cols etc.
+
+pwa
+    service worker
+
+later
+    docs
+    video tutorial
+    unit tests

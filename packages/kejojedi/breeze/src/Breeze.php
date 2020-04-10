@@ -29,7 +29,7 @@ class Breeze
     /** @var Database $database */
     public $database;
     public $title;
-    public $params = [];
+    public $parameters = [];
     /** @var MessageBag $errors */
     public $errors;
     public $viewFactory;
@@ -114,7 +114,7 @@ class Breeze
             if (isset($match[1])) {
                 $route = trim($match[1], '"\'');
                 $router->any($route, function () use ($router, $file) {
-                    $this->params = $router->getCurrentRoute()->parameters();
+                    $this->parameters = $router->getCurrentRoute()->parameters();
                     return include $file->getRealPath();
                 });
             }

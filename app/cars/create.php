@@ -9,10 +9,7 @@ $rules = [
 ];
 
 if (validate($rules)) {
-    database('cars')->create([
-        'name' => data('name'),
-        'year' => data('year'),
-    ]);
+    database('cars')->create(formData('name', 'year'));
     redirect('/cars');
 }
 
@@ -25,7 +22,7 @@ return view(
                 form(
                     formGroup(label('Name') . input('name') . error('name')) .
                     formGroup(label('Year') . input('year')->type('number') . error('year')) .
-                    submit('Create Car')
+                    submit('Create Car')->buttonPrimary()
                 )
             )
         )

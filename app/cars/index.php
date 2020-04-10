@@ -13,8 +13,7 @@ return view(
             columnAuto(hyperlink('/cars/create', 'Create Car')->buttonPrimary())
         ) .
         listGroup(
-            loop(
-                $cars,
+            loop($cars,
                 listGroupItem(
                     row(
                         column('{car.name}') .
