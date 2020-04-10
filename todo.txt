@@ -1,5 +1,12 @@
-pagination + nicer index view (cards/tables)
-auth logic
+
+nicer index view (cards/tables)
 figure out responsive columns
-migrations/seeds?
 go through all bootstrap docs for more functions
+auth logic
+migrations/seeds?
+
+--
+
+docs
+video tutorial
+unit tests

@@ -7,6 +7,9 @@ use Illuminate\Database\Capsule\Manager as Database;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\Router;
 use Illuminate\Support\MessageBag;
 use Illuminate\Translation\FileLoader;
@@ -19,6 +22,8 @@ use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\View\FileViewFinder;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger as MonoLogger;
 
 class Breeze
 {
@@ -28,6 +33,7 @@ class Breeze
     public $params = [];
     /** @var MessageBag $errors */
     public $errors;
+    public $viewFactory;
 
     public function __construct()
     {
@@ -37,7 +43,30 @@ class Breeze
     public function bootstrap()
     {
         $this->connect();
+        $this->pagination();
         $this->route();
+    }
+
+    public function viewFactory()
+    {
+        if (!$this->viewFactory) {
+            $filesystem = new Filesystem;
+            $dispatcher = new Dispatcher(new Container);
+            $resolver = new EngineResolver;
+            $compiler = new BladeCompiler($filesystem, __DIR__ . '../../views/compiled');
+
+            $resolver->register('blade', function () use ($compiler) {
+                return new CompilerEngine($compiler);
+            });
+            $resolver->register('php', function () {
+                return new PhpEngine;
+            });
+
+            $finder = new FileViewFinder($filesystem, [__DIR__ . '../../views/templates']);
+            $this->viewFactory = new ViewFactory($resolver, $finder, $dispatcher);
+        }
+
+        return $this->viewFactory;
     }
 
     public function connect()
@@ -58,6 +87,19 @@ class Breeze
         $database->bootEloquent();
 
         $this->database = $database;
+    }
+
+    public function pagination()
+    {
+        LengthAwarePaginator::viewFactoryResolver(function () {
+            return $this->viewFactory();
+        });
+        LengthAwarePaginator::currentPathResolver(function () {
+            return isset($_SERVER['REQUEST_URI']) ? strtok($_SERVER['REQUEST_URI'], '?') : '/';
+        });
+        LengthAwarePaginator::currentPageResolver(function ($pageName = 'page') {
+            return isset($_REQUEST[$pageName]) ? $_REQUEST[$pageName] : 1;
+        });
     }
 
     public function route()
@@ -85,22 +127,7 @@ class Breeze
 
     public function view($content)
     {
-        $filesystem = new Filesystem;
-        $dispatcher = new Dispatcher(new Container);
-        $resolver = new EngineResolver;
-        $compiler = new BladeCompiler($filesystem, __DIR__ . '../../views/compiled');
-
-        $resolver->register('blade', function () use ($compiler) {
-            return new CompilerEngine($compiler);
-        });
-        $resolver->register('php', function () {
-            return new PhpEngine;
-        });
-
-        $finder = new FileViewFinder($filesystem, [__DIR__ . '../../views/templates']);
-        $factory = new ViewFactory($resolver, $finder, $dispatcher);
-
-        return $factory->make('layout', [
+        return $this->viewFactory()->make('layout', [
             'title' => $this->title,
             'content' => $content,
             'errors' => $this->errors,
@@ -127,5 +154,20 @@ class Breeze
         return $this->errors && $this->errors->has($name)
             ? $this->errors->first($name)
             : null;
+    }
+
+    public function paginate(LengthAwarePaginator $elements)
+    {
+        return (string)$elements->appends($_GET)->links('pagination');
+    }
+
+    public function logMessage($message)
+    {
+        $file = __DIR__ . '/../../../../log.txt';
+
+        /** @var MonoLogger $log */
+        $log = new Logger(new MonoLogger('Breeze'));
+        $log->pushHandler(new StreamHandler($file));
+        $log->info($message);
     }
 }

@@ -3,7 +3,7 @@
 route('/cars');
 title('Cars');
 
-$cars = database('cars')->orderBy('name')->get();
+$cars = database('cars')->orderBy('name')->paginate(5);
 
 return view(
     component('navbar') .
@@ -17,6 +17,7 @@ return view(
             div('{car.name}') .
             hyperlink('/cars/edit/{car.id}', 'Edit') .
             horizontalRule()
-        )
+        ) .
+        paginate($cars)
     )->marginVertical(4)
 );

@@ -234,3 +234,15 @@ function column($content, $width = null)
         'class' => 'col' . ($width ? '-' . $width : null)
     ]);
 }
+
+function paginate($elements)
+{
+    global $breeze;
+    return $breeze->paginate($elements);
+}
+
+function logMessage($message)
+{
+    global $breeze;
+    $breeze->logMessage($message);
+}

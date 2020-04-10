@@ -16,6 +16,8 @@
     "illuminate/routing": "^7.5",
     "illuminate/events": "^7.5",
     "illuminate/filesystem": "^7.5",
+    "illuminate/pagination": "^7.5",
+    "illuminate/log": "^7.5",
     "illuminate/validation": "^7.5",
     "illuminate/view": "^7.5"
   },
