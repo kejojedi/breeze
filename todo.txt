@@ -1,2 +1,5 @@
-pagination
+pagination + nicer index view (cards/tables)
+auth logic
+figure out responsive columns
 migrations/seeds?
+go through all bootstrap docs for more functions
