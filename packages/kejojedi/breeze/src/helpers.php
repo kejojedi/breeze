@@ -42,7 +42,9 @@ function data($key)
 
 function redirect($redirect)
 {
+    ob_start();
     header('Location: ' . $redirect);
+    die();
 }
 
 function view($content)
