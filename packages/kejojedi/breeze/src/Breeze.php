@@ -41,6 +41,8 @@ class Breeze
 
     public function bootstrap()
     {
+        session_start();
+
         $this->connect();
         $this->pagination();
         $this->route();

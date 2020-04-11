@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\MessageBag;
+use Kejojedi\Breeze\Auth;
 use Kejojedi\Breeze\Html;
 use Kejojedi\Breeze\Model;
 
@@ -37,16 +39,61 @@ function validate($rules)
     return false;
 }
 
-function formData($keys)
+function decode($key)
+{
+    return trim(htmlspecialchars_decode($_POST[$key]));
+}
+
+function decodes($keys)
 {
     $keys = func_get_args();
     $formData = [];
-
-    foreach ($keys as $key) {
-        $formData[$key] = trim(htmlspecialchars_decode($_POST[$key]));
-    }
-
+    foreach ($keys as $key) $formData[$key] = decode($key);
     return $formData;
+}
+
+function old($name, $default = null)
+{
+    $old = $_POST[$name] ?? $default;
+    return htmlspecialchars($old);
+}
+
+function passwordHash($password)
+{
+    return password_hash($password, PASSWORD_BCRYPT);
+}
+
+function authLogin($user)
+{
+    (new Auth)->login($user);
+}
+
+function authLogout()
+{
+    (new Auth)->logout();
+}
+
+function authCheck()
+{
+    return (new Auth)->check();
+}
+
+function authGuest()
+{
+    return !(new Auth)->check();
+}
+
+function authUser()
+{
+    return (new Auth)->user();
+}
+
+function authAttempt($credentialKey, $passwordKey)
+{
+    global $breeze;
+    $user = (new Auth)->attempt(decode($credentialKey), decode($passwordKey));
+    if (!$user) $breeze->errors = (new MessageBag)->add($credentialKey, 'Invalid credentials entered.');
+    return $user;
 }
 
 function redirect($redirect)
@@ -183,7 +230,7 @@ function input($name, $value = null)
     global $breeze;
     return new Html('input', null, null, [
         'name' => $name,
-        'value' => htmlspecialchars($_POST[$name] ?? $value),
+        'value' => $value,
         'class' => 'form-control ' . ($breeze->error($name) ? 'is-invalid' : null),
     ]);
 }

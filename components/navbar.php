@@ -6,8 +6,12 @@ return navbarPrimary(
         navbarToggler(navbarTogglerIcon()) .
         navbarCollapse(
             navbarNav(
-                navItem(navLink('/', 'Index')) .
-                navItem(navLink('/cars', 'Cars'))
+                authGuest() ?
+                    navItem(navLink('/auth/login', 'Login')) .
+                    navItem(navLink('/auth/register', 'Register'))
+                    :
+                    navItem(navLink('/cars', 'Cars')) .
+                    navItem(navLink('/auth/logout', 'Logout'))
             )
         )
     )

@@ -9,7 +9,7 @@ $rules = [
 ];
 
 if (validate($rules)) {
-    database('cars')->create(formData('name', 'year'));
+    database('cars')->create(decodes('name', 'year'));
     redirect('/cars');
 }
 
@@ -20,8 +20,16 @@ return view(
         card(
             cardBody(
                 form(
-                    formGroup(label('Name') . input('name') . error('name')) .
-                    formGroup(label('Year') . input('year')->type('number') . error('year')) .
+                    formGroup(
+                        label('Name') .
+                        input('name', old('name')) .
+                        error('name')
+                    ) .
+                    formGroup(
+                        label('Year') .
+                        input('year', old('year'))->type('number') .
+                        error('year')
+                    ) .
                     submit('Create Car')->buttonPrimary()
                 )
             )

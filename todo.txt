@@ -1,9 +1,9 @@
 
 auth logic
-    register
-    login
-    logout
-    forgot pw
+    fix authAttempt logic - with & without forms?
+    forgot pw + mail
+    middleware
+    cookie for remember me
 
 database
     migrations

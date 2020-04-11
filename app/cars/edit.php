@@ -10,7 +10,7 @@ $rules = [
 ];
 
 if (validate($rules)) {
-    $car->update(formData('name', 'year'));
+    $car->update(decodes('name', 'year'));
     redirect('/cars');
 }
 
@@ -21,8 +21,16 @@ return view(
         card(
             cardBody(
                 form(
-                    formGroup(label('Name') . input('name', $car->name) . error('name')) .
-                    formGroup(label('Year') . input('year', $car->year)->type('number') . error('name')) .
+                    formGroup(
+                        label('Name') .
+                        input('name', old('name', $car->name)) .
+                        error('name')
+                    ) .
+                    formGroup(
+                        label('Year') .
+                        input('year', old('year', $car->year))->type('number') .
+                        error('year')
+                    ) .
                     submit('Edit Car')->buttonPrimary()
                 )
             )
