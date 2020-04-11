@@ -190,14 +190,44 @@ function div($content)
     return new Html('div', 'div', $content);
 }
 
+function span($content)
+{
+    return new Html('span', 'span', $content);
+}
+
 function container($content)
 {
     return new Html('div', 'div', $content, ['class' => 'container']);
 }
 
-function heading($content)
+function headingOne($content)
 {
     return new Html('h1', 'h1', $content);
+}
+
+function headingTwo($content)
+{
+    return new Html('h2', 'h2', $content);
+}
+
+function headingThree($content)
+{
+    return new Html('h3', 'h3', $content);
+}
+
+function headingFour($content)
+{
+    return new Html('h4', 'h4', $content);
+}
+
+function headingFive($content)
+{
+    return new Html('h5', 'h5', $content);
+}
+
+function headingSix($content)
+{
+    return new Html('h6', 'h6', $content);
 }
 
 function paragraph($content)
@@ -233,6 +263,17 @@ function input($name, $value = null)
         'value' => $value,
         'class' => 'form-control ' . ($breeze->error($name) ? 'is-invalid' : null),
     ]);
+}
+
+function checkbox($name, $label, $value = false)
+{
+    global $breeze;
+    $checked = $value ? ['checked' => 'checked'] : [];
+    return new Html('div', 'div',
+        new Html('input', null, null, array_merge(['type' => 'checkbox', 'name' => $name, 'id' => $name, 'class' => 'custom-control-input'], $checked)) .
+        new Html('label', 'label', $label, ['for' => $name, 'class' => 'custom-control-label'])
+        , ['class' => 'custom-control custom-checkbox']
+    );
 }
 
 function error($name)
@@ -305,14 +346,149 @@ function row($content)
     return new Html('div', 'div', $content, ['class' => 'row']);
 }
 
+function formRow($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'form-row']);
+}
+
 function column($content)
 {
     return new Html('div', 'div', $content, ['class' => 'col']);
 }
 
+function columnOne($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-1']);
+}
+
+function columnTwo($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-2']);
+}
+
+function columnThree($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-3']);
+}
+
+function columnFour($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-4']);
+}
+
+function columnFive($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-5']);
+}
+
+function columnSix($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-6']);
+}
+
+function columnSeven($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-7']);
+}
+
+function columnEight($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-8']);
+}
+
+function columnNine($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-9']);
+}
+
+function columnTen($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-10']);
+}
+
+function columnEleven($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-11']);
+}
+
+function columnTwelve($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-12']);
+}
+
 function columnAuto($content)
 {
     return new Html('div', 'div', $content, ['class' => 'col-auto']);
+}
+
+function columnDesktop($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md']);
+}
+
+function columnDesktopOne($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-1']);
+}
+
+function columnDesktopTwo($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-2']);
+}
+
+function columnDesktopThree($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-3']);
+}
+
+function columnDesktopFour($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-4']);
+}
+
+function columnDesktopFive($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-5']);
+}
+
+function columnDesktopSix($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-6']);
+}
+
+function columnDesktopSeven($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-7']);
+}
+
+function columnDesktopEight($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-8']);
+}
+
+function columnDesktopNine($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-9']);
+}
+
+function columnDesktopTen($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-10']);
+}
+
+function columnDesktopEleven($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-11']);
+}
+
+function columnDesktopTwelve($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-12']);
+}
+
+function columnDesktopAuto($content)
+{
+    return new Html('div', 'div', $content, ['class' => 'col-md-auto']);
 }
 
 function card($content)

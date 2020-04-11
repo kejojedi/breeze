@@ -17,7 +17,7 @@ if (validate($rules)) {
 return view(
     component('navbar') .
     container(
-        heading('Edit Car') .
+        headingOne('Edit Car') .
         card(
             cardBody(
                 form(
@@ -35,5 +35,5 @@ return view(
                 )
             )
         )
-    )->marginVertical(4)
+    )->paddingVertical(4)
 );

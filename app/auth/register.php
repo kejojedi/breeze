@@ -20,34 +20,42 @@ if (validate($rules)) {
 }
 
 return view(
-    component('navbar') .
     container(
-        heading('Register') .
-        card(
-            cardBody(
-                form(
-                    formGroup(
-                        label('Name') .
-                        input('name', old('name')) .
-                        error('name')
-                    ) .
-                    formGroup(
-                        label('Email') .
-                        input('email', old('email'))->type('email') .
-                        error('email')
-                    ) .
-                    formGroup(
-                        label('Password') .
-                        input('password')->type('password') .
-                        error('password')
-                    ) .
-                    formGroup(
-                        label('Confirm Password') .
-                        input('password_confirmation')->type('password')
-                    ) .
-                    submit('Register')->buttonPrimary()
+        row(
+            columnDesktopFour(
+                headingTwo(
+                    hyperlink('/',
+                        icon('wind')->textPrimary()->marginRight(2) .
+                        app_title
+                    )->textDark()
+                )->textCenter()->marginBottom(3) .
+                card(
+                    cardBody(
+                        form(
+                            formGroup(
+                                label('Name') .
+                                input('name', old('name')) .
+                                error('name')
+                            ) .
+                            formGroup(
+                                label('Email') .
+                                input('email', old('email'))->type('email') .
+                                error('email')
+                            ) .
+                            formGroup(
+                                label('Password') .
+                                input('password')->type('password') .
+                                error('password')
+                            ) .
+                            formGroup(
+                                label('Confirm Password') .
+                                input('password_confirmation')->type('password')
+                            ) .
+                            submit('Register')->buttonPrimary()->buttonBlock()
+                        )
+                    )
                 )
-            )
-        )
-    )->marginVertical(4)
+            )->paddingVertical(4)
+        )->alignItemsCenter()->justifyContentCenter()->viewHeight(100)
+    )
 );

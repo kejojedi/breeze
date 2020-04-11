@@ -9,9 +9,9 @@ return view(
     component('navbar') .
     container(
         row(
-            column(heading('Cars')) .
+            column(headingOne('Cars')->marginBottom(0)) .
             columnAuto(hyperlink('/cars/create', 'Create Car')->buttonPrimary())
-        ) .
+        )->alignItemsCenter()->marginBottom(3) .
         listGroup(
             loop($cars,
                 listGroupItem(
@@ -26,5 +26,5 @@ return view(
             )
         )->marginBottom(3) .
         paginate($cars)
-    )->marginVertical(4)
+    )->paddingVertical(4)
 );

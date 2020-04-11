@@ -12,5 +12,5 @@ return view(
                 ? 'You are not logged in.'
                 : 'You are logged in as ' . authUser()->name . '.'
         )
-    )->marginVertical(4)
+    )->paddingVertical(4)
 );

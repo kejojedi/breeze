@@ -14,25 +14,34 @@ if (validate($rules) && $user = authAttempt('email', 'password')) {
 }
 
 return view(
-    component('navbar') .
     container(
-        heading('Login') .
-        card(
-            cardBody(
-                form(
-                    formGroup(
-                        label('Email') .
-                        input('email', old('email')) .
-                        error('email')
-                    ) .
-                    formGroup(
-                        label('Password') .
-                        input('password')->type('password') .
-                        error('password')
-                    ) .
-                    submit('Login')->buttonPrimary()
+        row(
+            columnDesktopFour(
+                headingTwo(
+                    hyperlink('/',
+                        icon('wind')->textPrimary()->marginRight(2) .
+                        app_title
+                    )->textDark()
+                )->textCenter()->marginBottom(3) .
+                card(
+                    cardBody(
+                        form(
+                            formGroup(
+                                label('Email') .
+                                input('email', old('email')) .
+                                error('email')
+                            ) .
+                            formGroup(
+                                label('Password') .
+                                input('password')->type('password') .
+                                error('password')
+                            ) .
+                            checkbox('remember', 'Remember Me', old('remember'))->marginBottom(3) .
+                            submit('Login')->buttonPrimary()->buttonBlock()
+                        )
+                    )
                 )
-            )
-        )
-    )->marginVertical(4)
+            )->paddingVertical(4)
+        )->alignItemsCenter()->justifyContentCenter()->viewHeight(100)
+    )
 );

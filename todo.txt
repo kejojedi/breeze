@@ -1,9 +1,8 @@
 
 auth logic
-    fix authAttempt logic - with & without forms?
+    remember me
     forgot pw + mail
     middleware
-    cookie for remember me
 
 database
     migrations
@@ -21,6 +20,7 @@ pwa
     service worker
 
 later
+    refactor authAttempt()?
     docs
     video tutorial
     unit tests

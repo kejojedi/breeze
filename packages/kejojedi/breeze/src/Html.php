@@ -229,6 +229,12 @@ class Html
         return $this;
     }
 
+    public function buttonBlock()
+    {
+        $this->attributes[] = ['class' => 'btn-block'];
+        return $this;
+    }
+
     public function textPrimary()
     {
         $this->attributes[] = ['class' => 'text-primary'];
@@ -280,6 +286,30 @@ class Html
     public function textMuted()
     {
         $this->attributes[] = ['class' => 'text-muted'];
+        return $this;
+    }
+
+    public function justifyContentCenter()
+    {
+        $this->attributes[] = ['class' => 'justify-content-center'];
+        return $this;
+    }
+
+    public function alignItemsCenter()
+    {
+        $this->attributes[] = ['class' => 'align-items-center'];
+        return $this;
+    }
+
+    public function viewHeight($viewHeight)
+    {
+        $this->attributes[] = ['class' => 'vh-' . $viewHeight];
+        return $this;
+    }
+
+    public function textCenter()
+    {
+        $this->attributes[] = ['class' => 'text-center'];
         return $this;
     }
 }
